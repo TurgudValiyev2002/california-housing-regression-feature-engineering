@@ -1,0 +1,4 @@
+model,mae,rmse,r2
+ridge_base_features,0.2791,0.3468,0.915
+ridge_engineered_features,0.2047,0.2619,0.9515
+random_forest_engineered,0.2205,0.281,0.9442
