@@ -1,5 +1,10 @@
 # California Housing Regression with Feature Engineering
 
+![Project overview](assets/readme_project_overview.png)
+
+Figure: regression workflow for testing engineered housing features.
+
+
 ## Motivation
 
 Housing-price prediction is a useful regression problem because it combines numeric features, geographic signals, and feature engineering. The goal is not only to predict well, but also to understand which variables explain the prediction.
