@@ -6,7 +6,7 @@ Figure: real California Housing features are engineered, modeled, and evaluated 
 
 ## Motivation
 
-Regression projects should use real data when possible. The previous version used synthetic California-style data, which made the target too easy to recover. This version uses the real California Housing dataset from scikit-learn.
+Regression projects should use real data when possible. This project uses the real California Housing dataset from scikit-learn and evaluates both linear and nonlinear models.
 
 ## Project Goal
 
@@ -71,7 +71,7 @@ The cross-validation results are close to the holdout results, which means the r
 
 ## Conclusion
 
-This project now uses real California Housing data and gives a more credible regression comparison. The strongest model is the engineered random forest, while engineered linear features provide only a small improvement.
+This project uses real California Housing data and gives a credible regression comparison. The strongest model is the engineered random forest, while engineered linear features provide only a small improvement.
 
 ## How To Run
 

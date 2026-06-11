@@ -2,7 +2,7 @@
 
 ## Motivation
 
-The earlier version used synthetic housing data, so the result was too easy. We replaced it with the real California Housing dataset from scikit-learn.
+We use the real California Housing dataset from scikit-learn to compare linear regression, engineered features, and a nonlinear ensemble model.
 
 ## Dataset
 
@@ -22,4 +22,4 @@ Feature engineering slightly helped the linear model. The random forest performe
 
 ## Conclusion
 
-The project now reports credible real-data regression results. The best model is the engineered random forest, and cross-validation confirms that its improvement is stable.
+The project reports credible real-data regression results. The best model is the engineered random forest, and cross-validation confirms that its improvement is stable.
