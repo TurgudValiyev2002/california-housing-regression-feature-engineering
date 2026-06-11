@@ -1,53 +1,77 @@
-# California Housing Regression with Feature Engineering
+# California Housing Regression and Feature Engineering
 
 ![Project overview](assets/readme_project_overview.png)
 
-Figure: regression workflow for testing engineered housing features.
-
+Figure: real California Housing features are engineered, modeled, and evaluated with holdout and cross-validation metrics.
 
 ## Motivation
 
-Housing-price prediction is a useful regression problem because it combines numeric features, geographic signals, and feature engineering. The goal is not only to predict well, but also to understand which variables explain the prediction.
+Regression projects should use real data when possible. The previous version used synthetic California-style data, which made the target too easy to recover. This version uses the real California Housing dataset from scikit-learn.
 
 ## Project Goal
 
-We compared baseline regression with engineered features and tested whether feature engineering improves prediction.
+We compared baseline linear regression, engineered-feature linear regression, and a random forest regressor on the real California Housing dataset.
 
 ## Dataset
 
-We used a controlled California-style housing dataset with features similar to the common California Housing dataset: median income, house age, rooms, bedrooms, population, occupancy, latitude, and longitude. It is a local proxy dataset so the project runs without external downloads.
+We used `fetch_california_housing` from scikit-learn. The task is to predict median house value from district-level features such as median income, average rooms, average bedrooms, population, occupancy, latitude, and longitude.
 
 ## Tools
 
-Python, NumPy, pandas, scikit-learn, and matplotlib.
+Python, pandas, NumPy, scikit-learn, and matplotlib.
 
-## Method
+## Methods
 
-We created three additional features: rooms per bedroom, population per room, and a coastal-distance proxy. We compared Ridge regression on base features, Ridge regression on engineered features, and Random Forest regression on engineered features.
+We evaluated:
+
+- Ridge regression on original features
+- Ridge regression with engineered features
+- Random forest regression with engineered features
+
+Engineered features:
+
+- Rooms per bedroom
+- Population per room
+- Coastal distance proxy
 
 ## Hyperparameters
 
-- Test split: 25 percent
-- Ridge: `alpha=1.0`
-- Random Forest: `n_estimators=200`, `max_depth=8`, `random_state=42`
+| Model | Main Settings |
+|---|---|
+| Ridge | `alpha=1.0`, standardized features |
+| Random forest | 250 trees, max depth 14, min leaf size 2 |
+| Holdout split | 25% test |
+| Cross-validation | 5-fold shuffled KFold |
 
-## Results
+## Holdout Results
 
 | Model | MAE | RMSE | R2 |
 |---|---:|---:|---:|
-| Ridge base features | 0.2791 | 0.3468 | 0.9150 |
-| Ridge engineered features | 0.2047 | 0.2619 | 0.9515 |
-| Random forest engineered | 0.2205 | 0.2810 | 0.9442 |
+| Ridge base features | 0.5297 | 0.7356 | 0.5911 |
+| Ridge engineered features | 0.5231 | 0.7182 | 0.6101 |
+| Random forest engineered | 0.3300 | 0.5038 | 0.8082 |
 
-Result files include the base data, engineered data, regression metrics, feature importance, and figures.
+## Cross-Validation Results
+
+| Model | CV MAE Mean | CV R2 Mean | CV R2 Std |
+|---|---:|---:|---:|
+| Ridge base features | 0.5317 | 0.6014 | 0.0170 |
+| Ridge engineered features | 0.5238 | 0.6134 | 0.0120 |
+| Random forest engineered | 0.3406 | 0.8025 | 0.0084 |
+
+![R2 comparison](results/r2_comparison.png)
+
+![Feature importance](results/feature_importance.png)
 
 ## Interpretation
 
-Ridge regression with engineered features performed best. The engineered coastal-distance and ratio features helped the linear model capture structure that was less direct in the base features. Random forest also performed well, but it was slightly weaker than engineered Ridge on this dataset.
+Feature engineering slightly improves Ridge regression, but the gain is modest. The random forest is much stronger because it can model nonlinear relationships between income, geography, occupancy, and house value.
+
+The cross-validation results are close to the holdout results, which means the random forest improvement is not only one lucky train/test split.
 
 ## Conclusion
 
-Feature engineering was useful in this experiment. The important lesson is that we should test engineered features against a baseline and report the actual improvement instead of assuming they help.
+This project now uses real California Housing data and gives a more credible regression comparison. The strongest model is the engineered random forest, while engineered linear features provide only a small improvement.
 
 ## How To Run
 

@@ -1,0 +1,4 @@
+model,cv_mae_mean,cv_mae_std,cv_r2_mean,cv_r2_std
+ridge_base_features,0.5317,0.0084,0.6014,0.017
+ridge_engineered_features,0.5238,0.0073,0.6134,0.012
+random_forest_engineered,0.3406,0.0077,0.8025,0.0084
